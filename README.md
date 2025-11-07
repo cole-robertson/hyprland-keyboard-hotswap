@@ -2,6 +2,20 @@
 
 Automatically switch Hyprland keyboard configuration when external keyboards are connected or disconnected. Perfect for laptop users who switch between built-in and external keyboards with different key layouts.
 
+## 🚀 One-Line Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install.sh | bash
+```
+
+That's it! The installer will:
+- Download all necessary files
+- Detect your external keyboard
+- Let you configure key mappings interactively
+- Set up automatic switching
+
+**Note:** Make sure your external keyboard is connected before running!
+
 ## Features
 
 - **Interactive Setup**: Automatically detects YOUR keyboard and lets you choose key mappings
@@ -20,19 +34,23 @@ This tool is perfect for:
 - Anyone who wants different key mappings for different keyboards
 - Users with multiple keyboards who want consistent behavior
 
-## Quick Start - Interactive Setup (NEW!)
+## Installation Methods
 
-The new interactive installer will:
-1. Detect your external keyboard automatically
-2. Let you test and choose your preferred key mappings
-3. Configure different behaviors for laptop vs external keyboard
-4. Set up automatic switching
+### Option 1: Quick Install (Recommended)
+
+Just run this single command:
 
 ```bash
-# Clone and install interactively
+curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install.sh | bash
+```
+
+### Option 2: Clone and Install
+
+If you prefer to clone the repository first:
+
+```bash
 git clone https://github.com/cole-robertson/hyprland-keyboard-hotswap.git
 cd hyprland-keyboard-hotswap
-chmod +x install-interactive.sh
 ./install-interactive.sh
 ```
 
@@ -141,6 +159,24 @@ Common `kb_options`:
 
 ## Troubleshooting
 
+### One-Line Installation Issues
+
+If the curl command fails:
+
+```bash
+# Download manually and run
+wget https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install.sh
+chmod +x web-install.sh
+./web-install.sh
+```
+
+Or if you're behind a proxy:
+
+```bash
+# Use curl with proxy settings
+curl -x proxy:port -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install.sh | bash
+```
+
 ### Configuration Not Switching
 
 1. Check if udev rule is installed:
@@ -189,7 +225,9 @@ This will:
 
 - Hyprland window manager
 - systemd/udev (standard on most Linux distributions)
-- USB keyboard with unique vendor/product ID
+- curl or wget (for one-line install)
+- git (optional, for clone method)
+- USB keyboard connected during setup
 
 ## License
 

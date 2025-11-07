@@ -10,14 +10,14 @@ curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-ho
 
 **That's it!** In 30 seconds you'll have:
 - ✅ Your external keyboard detected
-- ✅ Custom key mappings configured
+- ✅ Custom key mappings configured with arrow navigation
 - ✅ Automatic switching enabled
 
-The installer gives you 4 simple options for each keyboard:
-1. **Keep as is** - No changes
-2. **Swap Alt ↔ Super (left)** - Mac-style on left side
-3. **Swap Alt ↔ Super (both)** - Full Mac-style
-4. **Mac layout** - Cmd→Super, Option→Alt
+Navigate options with **arrow keys** ↑/↓:
+- **Keep as is** - No changes
+- **Swap Alt ↔ Super (left)** - Mac-style on left side
+- **Swap Alt ↔ Super (both)** - Full Mac-style
+- **Mac layout** - Cmd→Super, Option→Alt
 
 **Note:** Connect your external keyboard before running!
 
@@ -42,24 +42,22 @@ The installer gives you 4 simple options for each keyboard:
 ║                                                      ║
 ╚══════════════════════════════════════════════════════╝
 
-Step 1 of 3
-Finding your keyboard
-
-✓ Found: Keychron K2 Mechanical Keyboard
+Use ↑/↓ arrows to navigate, Enter to select
 
 Step 2 of 3
-External keyboard setup
+Configure external keyboard
 
 How should your external keyboard work?
 
-Choose an option:
-  1 → Keep as is
-  2 → Swap Alt ↔ Super (left side)
-  3 → Swap Alt ↔ Super (both sides)
-  4 → Mac style (Cmd→Super, Option→Alt)
+Select layout for external keyboard:
 
-Your choice [1-4]: _
+  ▶ Keep as is (no changes)
+    Swap Alt ↔ Super (left side only)
+    Swap Alt ↔ Super (both sides)
+    Mac style (Cmd→Super, Option→Alt)
 ```
+
+Navigate with **arrow keys** ↑/↓, press **Enter** to select!
 
 ## Use Case
 

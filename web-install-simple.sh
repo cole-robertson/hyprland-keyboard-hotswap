@@ -41,10 +41,19 @@ check_deps() {
 download() {
     local file="$1"
     local dest="$2"
-    curl -fsSL "${GITHUB_RAW}/${file}" -o "$dest" 2>/dev/null || {
+
+    if ! curl -fsSL "${GITHUB_RAW}/${file}" -o "$dest" 2>/dev/null; then
         echo -e "${RED}Failed to download $file${NC}"
+        echo -e "${YELLOW}This might be due to GitHub caching. Try again in a minute, or use:${NC}"
+        echo -e "${CYAN}git clone https://github.com/${REPO}.git && cd hyprland-keyboard-hotswap && ./install-simple.sh${NC}"
         exit 1
-    }
+    fi
+
+    # Verify file was actually downloaded and has content
+    if [ ! -f "$dest" ] || [ ! -s "$dest" ]; then
+        echo -e "${RED}Downloaded file is empty or missing: $dest${NC}"
+        exit 1
+    fi
 }
 
 # Main installation
@@ -61,21 +70,31 @@ main() {
     # Ensure external keyboard is connected
     echo -e "${YELLOW}⚠${NC}  Please ensure your external keyboard is connected\n"
     echo -e "${DIM}Press Enter to continue...${NC}"
-    read -s
+    read -s < /dev/tty
     echo
 
     # Create temp directory
-    mkdir -p "$TEMP_DIR"
+    echo -e "${DIM}Creating temporary directory...${NC}"
+    mkdir -p "$TEMP_DIR" || {
+        echo -e "${RED}Failed to create temp directory${NC}"
+        exit 1
+    }
     cd "$TEMP_DIR"
 
     # Download required files
     echo -e "${DIM}Downloading setup files...${NC}"
     mkdir -p scripts
+
+    echo -e "${DIM}  • Downloading simple-setup.sh...${NC}"
     download "scripts/simple-setup.sh" "scripts/simple-setup.sh"
+
+    echo -e "${DIM}  • Downloading keyboard-switch-generic.sh...${NC}"
     download "scripts/keyboard-switch-generic.sh" "scripts/keyboard-switch-generic.sh"
+
     chmod +x scripts/*.sh
 
     # Run the simple setup
+    echo -e "${DIM}Starting setup wizard...${NC}"
     if ! ./scripts/simple-setup.sh; then
         echo -e "${RED}Setup cancelled${NC}"
         exit 1

@@ -81,7 +81,7 @@ detect_keyboard() {
 
     # Ask for confirmation
     echo -e "${CYAN}Is this your external keyboard? (y/n)${NC}"
-    read -n 1 -r confirm
+    read -n 1 -r confirm < /dev/tty
     echo
     if [[ ! $confirm =~ ^[Yy]$ ]]; then
         echo -e "${YELLOW}Please disconnect other USB devices and try again${NC}"
@@ -106,7 +106,7 @@ get_key_choice() {
     echo -e "  ${BOLD}4${NC} → Mac style (Cmd→Super, Option→Alt)"
     echo ""
 
-    read -p "$(echo -e ${CYAN}Your choice [1-4]: ${NC})" -n 1 choice
+    read -p "$(echo -e ${CYAN}Your choice [1-4]: ${NC})" -n 1 choice < /dev/tty
     echo ""
 
     case $choice in

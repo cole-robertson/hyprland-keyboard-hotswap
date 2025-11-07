@@ -58,77 +58,22 @@ detect_keyboard() {
     echo -e "${GREEN}✓${NC} Found: ${BOLD}$KEYBOARD_NAME${NC}\n"
 }
 
-# Real key detection using bash read
+# Simple interactive key selection
 detect_super_key() {
-    echo -e "${BOLD}Let's detect your SUPER key!${NC}\n"
+    echo -e "${BOLD}Let's configure your SUPER key!${NC}\n"
 
-    echo -e "${CYAN}Instructions:${NC}"
-    echo -e "1. I'll ask you to press a key"
-    echo -e "2. Press and HOLD the key for 1 second"
-    echo -e "3. Then release it\n"
+    echo -e "${CYAN}Test your keyboard:${NC}"
+    echo -e "1. Press the key you want to use as SUPER"
+    echo -e "2. See what happens with Super+Q, Super+Enter"
+    echo -e "3. Then tell us which key you want\n"
 
-    echo -e "${YELLOW}Ready? Press ENTER to start...${NC}"
+    echo -e "${YELLOW}Go ahead and test your keys, then press ENTER when ready...${NC}"
     read -s < /dev/tty
 
-    echo -e "\n${GREEN}NOW: Press and HOLD the key you want as SUPER...${NC}"
-    echo -e "${DIM}(The key for Super+Q, Super+Enter, etc)${NC}\n"
+    echo -e "\n${BOLD}Which physical key do you want as your SUPER key?${NC}\n"
+    echo -e "${DIM}(The key that will trigger Super+Q, Super+Enter, etc)${NC}\n"
 
-    # Detect using timeout and raw input
-    echo -e "${YELLOW}Listening for keypress...${NC}"
-
-    # Save terminal state
-    OLD_STTY=$(stty -g 2>/dev/null || true)
-
-    # Put terminal in raw mode to capture special keys
-    stty -icanon -echo min 0 time 10 2>/dev/null || true
-
-    # Capture the key
-    echo -e "${DIM}Press the key NOW...${NC}"
-    KEY=""
-
-    # Try to read the key with a visual countdown
-    for i in 3 2 1; do
-        echo -ne "\r${CYAN}Waiting... $i ${NC}"
-        read -t 1 -n 1 KEY_PRESS 2>/dev/null || true
-        if [ -n "$KEY_PRESS" ]; then
-            KEY="$KEY_PRESS"
-            break
-        fi
-    done
-
-    # Restore terminal
-    stty "$OLD_STTY" 2>/dev/null || true
-
-    echo -e "\n"
-
-    # Analyze what was pressed
-    if [ -n "$KEY" ]; then
-        KEY_CODE=$(printf '%d' "'$KEY" 2>/dev/null || echo "0")
-        echo -e "${GREEN}✓${NC} Key detected! (code: $KEY_CODE)"
-
-        # Common key codes
-        case $KEY_CODE in
-            27|91)
-                echo -e "${CYAN}Looks like Alt or a special key${NC}"
-                DETECTED_TYPE="alt"
-                ;;
-            32)
-                echo -e "${CYAN}That was Space - let's try again${NC}"
-                DETECTED_TYPE="retry"
-                ;;
-            *)
-                echo -e "${CYAN}Got a key signal${NC}"
-                DETECTED_TYPE="unknown"
-                ;;
-        esac
-    else
-        echo -e "${YELLOW}No key detected - let's use the menu${NC}"
-        DETECTED_TYPE="menu"
-    fi
-
-    # Confirm what they pressed
-    echo -e "\n${BOLD}Which key did you actually press?${NC}\n"
-    PS3=$'\nConfirm your key (1-4): '
+    PS3=$'\nSelect your SUPER key (1-4): '
     options=(
         "Left Alt (beside spacebar)"
         "Left Cmd/Super/Win (between Ctrl and Alt)"

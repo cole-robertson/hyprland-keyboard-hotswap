@@ -5,26 +5,61 @@ Automatically switch Hyprland keyboard configuration when external keyboards are
 ## 🚀 One-Line Installation
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install-simple.sh | bash
 ```
 
-That's it! The installer will:
-- Download all necessary files
-- Detect your external keyboard
-- Let you configure key mappings interactively
-- Set up automatic switching
+**That's it!** In 30 seconds you'll have:
+- ✅ Your external keyboard detected
+- ✅ Custom key mappings configured
+- ✅ Automatic switching enabled
 
-**Note:** Make sure your external keyboard is connected before running!
+The installer gives you 4 simple options for each keyboard:
+1. **Keep as is** - No changes
+2. **Swap Alt ↔ Super (left)** - Mac-style on left side
+3. **Swap Alt ↔ Super (both)** - Full Mac-style
+4. **Mac layout** - Cmd→Super, Option→Alt
+
+**Note:** Connect your external keyboard before running!
 
 ## Features
 
-- **Interactive Setup**: Automatically detects YOUR keyboard and lets you choose key mappings
-- **Universal Support**: Works with ANY USB keyboard - not limited to specific models
-- **Custom Key Mapping**: Choose which physical key acts as Super, Alt, or Ctrl
-- **Automatic Detection**: Switches configuration when you plug/unplug
-- **Instant Switching**: Changes apply immediately without restart
-- **Persistent Settings**: Correct configuration loads on system startup
-- **Easy Installation**: Interactive setup guides you through the process
+- **30-Second Setup**: Beautiful, minimal CLI wizard
+- **Universal Support**: Works with ANY USB keyboard
+- **Smart Defaults**: Sensible presets for common layouts
+- **Automatic Switching**: Detects when you plug/unplug
+- **Zero Config**: Works immediately after setup
+- **Persistent**: Correct layout on every boot
+
+## What It Looks Like
+
+```
+╔══════════════════════════════════════════════════════╗
+║                                                      ║
+║           ⌨️  KEYBOARD SETUP WIZARD                   ║
+║                                                      ║
+║      Making your keyboard work exactly how          ║
+║            you want in 30 seconds                   ║
+║                                                      ║
+╚══════════════════════════════════════════════════════╝
+
+Step 1 of 3
+Finding your keyboard
+
+✓ Found: Keychron K2 Mechanical Keyboard
+
+Step 2 of 3
+External keyboard setup
+
+How should your external keyboard work?
+
+Choose an option:
+  1 → Keep as is
+  2 → Swap Alt ↔ Super (left side)
+  3 → Swap Alt ↔ Super (both sides)
+  4 → Mac style (Cmd→Super, Option→Alt)
+
+Your choice [1-4]: _
+```
 
 ## Use Case
 
@@ -41,7 +76,7 @@ This tool is perfect for:
 Just run this single command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-hotswap/master/web-install-simple.sh | bash
 ```
 
 ### Option 2: Clone and Install
@@ -51,7 +86,8 @@ If you prefer to clone the repository first:
 ```bash
 git clone https://github.com/cole-robertson/hyprland-keyboard-hotswap.git
 cd hyprland-keyboard-hotswap
-./install-interactive.sh
+chmod +x install-simple.sh
+./install-simple.sh
 ```
 
 ### During Setup, You Can Choose:

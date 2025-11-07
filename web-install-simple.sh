@@ -85,18 +85,18 @@ main() {
     echo -e "${DIM}Downloading setup files...${NC}"
     mkdir -p scripts
 
-    echo -e "${DIM}  • Downloading setup script...${NC}"
-    download "scripts/setup-final.sh" "scripts/setup-final.sh"
+    echo -e "${DIM}  • Downloading interactive setup...${NC}"
+    download "scripts/interactive-setup.sh" "scripts/interactive-setup.sh"
 
     echo -e "${DIM}  • Downloading keyboard switcher...${NC}"
     download "scripts/keyboard-switch-generic.sh" "scripts/keyboard-switch-generic.sh"
 
     chmod +x scripts/*.sh
 
-    # Run the simple setup
-    echo -e "${DIM}Starting setup wizard...${NC}"
+    # Run the interactive setup
+    echo -e "${DIM}Starting interactive setup...${NC}"
     sleep 1
-    if ! ./scripts/setup-final.sh; then
+    if ! ./scripts/interactive-setup.sh; then
         echo -e "${RED}Setup cancelled${NC}"
         exit 1
     fi

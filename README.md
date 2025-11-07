@@ -10,14 +10,14 @@ curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-ho
 
 **That's it!** In 30 seconds you'll have:
 - ✅ Your external keyboard detected
-- ✅ Custom key mappings configured
+- ✅ **Press actual keys** to configure mappings
 - ✅ Automatic switching enabled
 
-Simple numbered menu options:
-1. **Keep as is** - No changes
-2. **Swap Alt ↔ Super (left)** - Mac-style on left side
-3. **Swap Alt ↔ Super (both)** - Full Mac-style
-4. **Mac layout** - Cmd→Super, Option→Alt
+How it works:
+1. **Press the key** you want as Super
+2. **Tell us which key** you pressed
+3. **We figure out** the correct mapping
+4. **Done!** - No confusing menus
 
 **Note:** Connect your external keyboard before running!
 
@@ -35,25 +35,40 @@ Simple numbered menu options:
 ```
 ╔══════════════════════════════════════════════════════╗
 ║                                                      ║
-║           ⌨️  KEYBOARD SETUP WIZARD                   ║
+║         ⌨️  INTERACTIVE KEYBOARD SETUP               ║
 ║                                                      ║
-║      Making your keyboard work exactly how          ║
-║            you want in 30 seconds                   ║
+║     Press the actual keys you want to use!          ║
 ║                                                      ║
 ╚══════════════════════════════════════════════════════╝
 
-Step 2: Configure external keyboard
-How should your external keyboard work?
+Let's test your external keyboard!
 
-1) Keep as is (no changes)
-2) Swap Alt ↔ Super (left side)
-3) Swap Alt ↔ Super (both sides)
-4) Mac style (Cmd→Super)
+┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬──────┐
+│Esc│ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ Bksp │
+├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬────┤
+│ Tab │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │ \  │
+├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴────┤
+│ Caps │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │ ' │ Enter │
+├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───────┤
+│ Shift  │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │  Shift  │
+├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬───┤
+│Ctrl│Alt │Cmd │         Space          │Cmd │Alt │Menu│Ctl│
+└────┴────┴────┴────────────────────────┴────┴────┴────┴───┘
 
-Your choice (1-4): _
+1. Press what you think is the SUPER (Windows/Cmd) key
+   (The key you want to use for shortcuts like Super+Q)
+
+Press the key now...
+✓ Key detected
+
+2. Which key did you just press?
+   1) Left Alt (next to spacebar)
+   2) Left Cmd/Super/Win (between Ctrl and Alt)
+   3) Right Alt
+   4) Right Cmd/Super/Win
 ```
 
-Simple numbered menu - just type the number and press Enter!
+**Interactive setup** - Actually press the keys you want to use!
 
 ## Use Case
 

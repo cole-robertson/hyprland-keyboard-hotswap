@@ -88,7 +88,10 @@ select_option() {
     # Show cursor again
     tput cnorm
 
-    # Return the selected option
+    # Export the selected option as a global variable
+    SELECTED_OPTION="${options[$selected]}"
+
+    # Also echo it for backward compatibility
     echo "${options[$selected]}"
     return 0
 }

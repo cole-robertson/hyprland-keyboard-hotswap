@@ -78,9 +78,11 @@ detect_keyboard() {
     echo -e "${GREEN}✓${NC} Found: ${BOLD}$KEYBOARD_NAME${NC}\n"
 
     # Ask for confirmation with arrow menu
-    local confirm=$(select_option "Is this your external keyboard?" "Yes, this is my keyboard" "No, try again")
+    select_option "Is this your external keyboard?" "Yes, this is my keyboard" "No, try again"
+    local confirm="$?"
+    local selected_text="${SELECTED_OPTION}"
 
-    if [[ "$confirm" != "Yes, this is my keyboard" ]]; then
+    if [[ "$confirm" -ne 0 ]] || [[ "$selected_text" == "No, try again" ]]; then
         echo -e "\n${YELLOW}Please disconnect other USB devices and try again${NC}"
         exit 1
     fi
@@ -114,11 +116,13 @@ main() {
 
     echo -e "${CYAN}How should your ${BOLD}external keyboard${NC}${CYAN} work?${NC}\n"
 
-    EXTERNAL_CHOICE=$(select_option "Select layout for external keyboard:" \
+    select_option "Select layout for external keyboard:" \
         "Keep as is (no changes)" \
         "Swap Alt ↔ Super (left side only)" \
         "Swap Alt ↔ Super (both sides)" \
-        "Mac style (Cmd→Super, Option→Alt)")
+        "Mac style (Cmd→Super, Option→Alt)"
+
+    EXTERNAL_CHOICE="${SELECTED_OPTION}"
 
     case "$EXTERNAL_CHOICE" in
         "Keep as is (no changes)")
@@ -148,10 +152,12 @@ main() {
 
     echo -e "${CYAN}How should your ${BOLD}laptop keyboard${NC}${CYAN} work?${NC}\n"
 
-    LAPTOP_CHOICE=$(select_option "Select layout for laptop keyboard:" \
+    select_option "Select layout for laptop keyboard:" \
         "Mac style - Swap Alt ↔ Super (recommended)" \
         "Keep as is (no changes)" \
-        "Same as external keyboard")
+        "Same as external keyboard"
+
+    LAPTOP_CHOICE="${SELECTED_OPTION}"
 
     case "$LAPTOP_CHOICE" in
         "Mac style - Swap Alt ↔ Super (recommended)")

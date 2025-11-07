@@ -10,14 +10,14 @@ curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-ho
 
 **That's it!** In 30 seconds you'll have:
 - ✅ Your external keyboard detected
-- ✅ **Visual keyboard diagram** to guide you
+- ✅ **REAL key detection** - press actual keys!
 - ✅ Automatic switching enabled
 
 How it works:
-1. **See the keyboard** diagram showing all keys
-2. **Choose which key** you want as Super
-3. **We configure** the correct mapping
-4. **Done!** - Simple and clear
+1. **Press and hold** the key you want as Super
+2. **We detect it** with a countdown timer
+3. **Confirm which key** you pressed
+4. **Done!** - Actual key detection!
 
 **Note:** Connect your external keyboard before running!
 
@@ -35,9 +35,9 @@ How it works:
 ```
 ╔══════════════════════════════════════════════════════╗
 ║                                                      ║
-║         ⌨️  INTERACTIVE KEYBOARD SETUP               ║
+║        ⌨️  REAL KEY DETECTION SETUP                  ║
 ║                                                      ║
-║     Press the actual keys you want to use!          ║
+║    Actually press the keys you want to use!         ║
 ║                                                      ║
 ╚══════════════════════════════════════════════════════╝
 
@@ -55,18 +55,23 @@ Let's test your external keyboard!
 │Ctrl│Alt │Cmd │         Space          │Cmd │Alt │Menu│Ctl│
 └────┴────┴────┴────────────────────────┴────┴────┴────┴───┘
 
-Which physical key do you want to use as SUPER?
-(The key for shortcuts like Super+Q, Super+Enter, etc)
+NOW: Press and HOLD the key you want as SUPER...
+(The key for Super+Q, Super+Enter, etc)
 
-1) Alt key (next to spacebar)
-2) Cmd/Super/Win key (between Ctrl and Alt)
-3) Keep current - no changes
-4) Both Alt and Cmd swap
+Listening for keypress...
+Press the key NOW...
+Waiting... 3 2 1
 
-Your choice (1-4):
+✓ Key detected!
+
+Which key did you actually press?
+1) Left Alt (beside spacebar)
+2) Left Cmd/Super/Win (between Ctrl and Alt)
+3) Right Alt
+4) I want to choose from a menu instead
 ```
 
-**Visual keyboard guide** - See exactly which key is which!
+**REAL key detection** - Actually press the key you want!
 
 ## Use Case
 

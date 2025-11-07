@@ -60,7 +60,8 @@ main() {
 
     # Ensure external keyboard is connected
     echo -e "${YELLOW}⚠${NC}  Please ensure your external keyboard is connected\n"
-    read -p "Press Enter to continue..." -s
+    echo -e "${DIM}Press Enter to continue...${NC}"
+    read -s
     echo
 
     # Create temp directory

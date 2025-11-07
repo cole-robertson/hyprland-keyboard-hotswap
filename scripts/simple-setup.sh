@@ -42,20 +42,35 @@ EOF
 
 # Simple keyboard detection
 detect_keyboard() {
-    echo -e "${DIM}Detecting your keyboard...${NC}"
+    echo -e "${DIM}Detecting USB keyboards...${NC}"
     sleep 1
 
-    # Find external USB keyboards
-    KEYBOARD_INFO=$(lsusb | grep -iE "keyboard|keychron|ducky|corsair|razer|logitech|das|hhkb|realforce|leopold|varmilo|anne|akko|royal|filco" | head -1)
+    # Get all USB devices and their classes
+    # We'll look for HID devices that are likely keyboards (not mice, webcams, etc)
+    KEYBOARD_INFO=""
 
+    # First, try to find devices that explicitly mention "keyboard" in any case
+    KEYBOARD_INFO=$(lsusb | grep -i "keyboard" | grep -v "root hub" | head -1)
+
+    # If no explicit keyboard found, look for USB HID devices (class 03)
+    # Exclude common non-keyboard devices
     if [ -z "$KEYBOARD_INFO" ]; then
-        # Try generic detection
-        KEYBOARD_INFO=$(lsusb | grep -v "root hub" | grep -v "Mouse" | grep -v "Webcam" | head -5 | tail -1)
+        for device in $(lsusb | grep -v "root hub" | grep -v -i "mouse\|webcam\|camera\|hub\|receiver\|wireless.*adapter"); do
+            # Check if it looks like it could be a keyboard (has vendor/product ID)
+            if echo "$device" | grep -qE "ID [0-9a-f]{4}:[0-9a-f]{4}"; then
+                # For now, we'll take the first non-excluded device
+                # In practice, this will often be a keyboard
+                KEYBOARD_INFO="$device"
+                break
+            fi
+        done
     fi
 
     if [ -z "$KEYBOARD_INFO" ]; then
-        echo -e "${YELLOW}⚠  No external keyboard detected${NC}"
+        echo -e "${YELLOW}⚠  No external USB keyboard detected${NC}"
         echo -e "${DIM}Please connect your keyboard and try again${NC}"
+        echo -e "${DIM}Detected USB devices:${NC}"
+        lsusb | grep -v "root hub" | head -5
         exit 1
     fi
 
@@ -63,6 +78,16 @@ detect_keyboard() {
     KEYBOARD_NAME=$(echo "$KEYBOARD_INFO" | sed -E 's/.*[0-9a-f]{4}:[0-9a-f]{4} //')
 
     echo -e "${GREEN}✓${NC} Found: ${BOLD}$KEYBOARD_NAME${NC}\n"
+
+    # Ask for confirmation
+    echo -e "${CYAN}Is this your external keyboard? (y/n)${NC}"
+    read -n 1 -r confirm
+    echo
+    if [[ ! $confirm =~ ^[Yy]$ ]]; then
+        echo -e "${YELLOW}Please disconnect other USB devices and try again${NC}"
+        exit 1
+    fi
+
     sleep 1
 }
 

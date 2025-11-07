@@ -10,14 +10,14 @@ curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-ho
 
 **That's it!** In 30 seconds you'll have:
 - ✅ Your external keyboard detected
-- ✅ Custom key mappings configured with arrow navigation
+- ✅ Custom key mappings configured
 - ✅ Automatic switching enabled
 
-Navigate options with **arrow keys** ↑/↓:
-- **Keep as is** - No changes
-- **Swap Alt ↔ Super (left)** - Mac-style on left side
-- **Swap Alt ↔ Super (both)** - Full Mac-style
-- **Mac layout** - Cmd→Super, Option→Alt
+Simple numbered menu options:
+1. **Keep as is** - No changes
+2. **Swap Alt ↔ Super (left)** - Mac-style on left side
+3. **Swap Alt ↔ Super (both)** - Full Mac-style
+4. **Mac layout** - Cmd→Super, Option→Alt
 
 **Note:** Connect your external keyboard before running!
 
@@ -42,22 +42,18 @@ Navigate options with **arrow keys** ↑/↓:
 ║                                                      ║
 ╚══════════════════════════════════════════════════════╝
 
-Use ↑/↓ arrows to navigate, Enter to select
-
-Step 2 of 3
-Configure external keyboard
-
+Step 2: Configure external keyboard
 How should your external keyboard work?
 
-Select layout for external keyboard:
+1) Keep as is (no changes)
+2) Swap Alt ↔ Super (left side)
+3) Swap Alt ↔ Super (both sides)
+4) Mac style (Cmd→Super)
 
-  ▶ Keep as is (no changes)
-    Swap Alt ↔ Super (left side only)
-    Swap Alt ↔ Super (both sides)
-    Mac style (Cmd→Super, Option→Alt)
+Your choice (1-4): _
 ```
 
-Navigate with **arrow keys** ↑/↓, press **Enter** to select!
+Simple numbered menu - just type the number and press Enter!
 
 ## Use Case
 

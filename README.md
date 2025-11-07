@@ -10,14 +10,14 @@ curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-ho
 
 **That's it!** In 30 seconds you'll have:
 - ✅ Your external keyboard detected
-- ✅ **Press actual keys** to configure mappings
+- ✅ **Visual keyboard diagram** to guide you
 - ✅ Automatic switching enabled
 
 How it works:
-1. **Press the key** you want as Super
-2. **Tell us which key** you pressed
-3. **We figure out** the correct mapping
-4. **Done!** - No confusing menus
+1. **See the keyboard** diagram showing all keys
+2. **Choose which key** you want as Super
+3. **We configure** the correct mapping
+4. **Done!** - Simple and clear
 
 **Note:** Connect your external keyboard before running!
 
@@ -55,20 +55,18 @@ Let's test your external keyboard!
 │Ctrl│Alt │Cmd │         Space          │Cmd │Alt │Menu│Ctl│
 └────┴────┴────┴────────────────────────┴────┴────┴────┴───┘
 
-1. Press what you think is the SUPER (Windows/Cmd) key
-   (The key you want to use for shortcuts like Super+Q)
+Which physical key do you want to use as SUPER?
+(The key for shortcuts like Super+Q, Super+Enter, etc)
 
-Press the key now...
-✓ Key detected
+1) Alt key (next to spacebar)
+2) Cmd/Super/Win key (between Ctrl and Alt)
+3) Keep current - no changes
+4) Both Alt and Cmd swap
 
-2. Which key did you just press?
-   1) Left Alt (next to spacebar)
-   2) Left Cmd/Super/Win (between Ctrl and Alt)
-   3) Right Alt
-   4) Right Cmd/Super/Win
+Your choice (1-4):
 ```
 
-**Interactive setup** - Actually press the keys you want to use!
+**Visual keyboard guide** - See exactly which key is which!
 
 ## Use Case
 

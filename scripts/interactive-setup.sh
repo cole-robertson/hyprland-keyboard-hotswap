@@ -85,72 +85,54 @@ detect_keyboard() {
 
 # Interactive key mapping
 interactive_key_test() {
-    echo -e "${BOLD}Let's test your external keyboard!${NC}\n"
+    echo -e "${BOLD}Let's configure your external keyboard!${NC}\n"
     show_keyboard
 
-    echo -e "${CYAN}On your EXTERNAL keyboard:${NC}\n"
+    echo -e "${CYAN}Looking at the keyboard diagram above:${NC}\n"
 
-    # Test current behavior
-    echo -e "${YELLOW}1. Press what you think is the SUPER (Windows/Cmd) key${NC}"
-    echo -e "${DIM}   (The key you want to use for shortcuts like Super+Q)${NC}"
-    echo -e "\n${DIM}Press the key now...${NC}"
+    # Direct question approach
+    echo -e "${YELLOW}Which physical key do you want to use as SUPER?${NC}"
+    echo -e "${DIM}(The key for shortcuts like Super+Q, Super+Enter, etc)${NC}\n"
 
-    # Capture a key (simplified - we'll map based on position)
-    read -n 1 -s < /dev/tty
-    echo -e "${GREEN}✓${NC} Key detected\n"
-
-    echo -e "${YELLOW}2. Which key did you just press?${NC}\n"
-    PS3=$'\nSelect the physical key you pressed (1-4): '
+    PS3=$'\nYour choice (1-4): '
     options=(
-        "Left Alt (next to spacebar)"
-        "Left Cmd/Super/Win (between Ctrl and Alt)"
-        "Right Alt"
-        "Right Cmd/Super/Win"
+        "Alt key (next to spacebar)"
+        "Cmd/Super/Win key (between Ctrl and Alt)"
+        "Keep current - no changes"
+        "Both Alt and Cmd swap"
     )
 
-    select key_pressed in "${options[@]}"; do
-        case $key_pressed in
-            "Left Alt (next to spacebar)")
-                USER_PRESSED="lalt"
+    select choice in "${options[@]}"; do
+        case $choice in
+            "Alt key (next to spacebar)")
+                # User wants Alt to act as Super
+                EXTERNAL_OPTIONS="altwin:swap_lalt_lwin"
+                echo -e "\n${GREEN}✓${NC} Your Alt key will act as Super"
+                echo -e "${DIM}   (Alt becomes Super, Super becomes Alt)${NC}"
                 break
                 ;;
-            "Left Cmd/Super/Win (between Ctrl and Alt)")
-                USER_PRESSED="lsuper"
+            "Cmd/Super/Win key (between Ctrl and Alt)")
+                # User wants Super to stay as Super
+                EXTERNAL_OPTIONS=""
+                echo -e "\n${GREEN}✓${NC} Your Cmd/Super key will work as Super"
+                echo -e "${DIM}   (No changes needed - keys work as labeled)${NC}"
                 break
                 ;;
-            "Right Alt")
-                USER_PRESSED="ralt"
+            "Keep current - no changes")
+                EXTERNAL_OPTIONS=""
+                echo -e "\n${GREEN}✓${NC} Keeping current configuration"
                 break
                 ;;
-            "Right Cmd/Super/Win")
-                USER_PRESSED="rsuper"
+            "Both Alt and Cmd swap")
+                EXTERNAL_OPTIONS="altwin:swap_alt_win"
+                echo -e "\n${GREEN}✓${NC} Swapping all Alt ↔ Super keys"
                 break
+                ;;
+            *)
+                echo -e "${YELLOW}Please select 1-4${NC}"
                 ;;
         esac
     done < /dev/tty
-
-    echo -e "\n${GREEN}✓${NC} Got it! You pressed the ${BOLD}$key_pressed${NC}"
-
-    # Determine configuration needed
-    echo -e "\n${CYAN}Setting up your configuration...${NC}"
-
-    if [[ "$USER_PRESSED" == "lalt" ]]; then
-        # User pressed Alt but wants it to be Super
-        EXTERNAL_OPTIONS="altwin:swap_lalt_lwin"
-        echo -e "${GREEN}✓${NC} Will swap Left Alt ↔ Left Super"
-    elif [[ "$USER_PRESSED" == "lsuper" ]]; then
-        # User pressed Super and wants it to stay Super
-        EXTERNAL_OPTIONS=""
-        echo -e "${GREEN}✓${NC} Keys will work as labeled (no swap needed)"
-    elif [[ "$USER_PRESSED" == "ralt" ]]; then
-        # User wants right alt as super
-        EXTERNAL_OPTIONS="altwin:swap_alt_win"
-        echo -e "${GREEN}✓${NC} Will swap Alt ↔ Super keys"
-    else
-        # Right super
-        EXTERNAL_OPTIONS=""
-        echo -e "${GREEN}✓${NC} Keys will work as labeled"
-    fi
 }
 
 # Quick laptop config

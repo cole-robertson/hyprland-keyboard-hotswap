@@ -10,14 +10,14 @@ curl -fsSL https://raw.githubusercontent.com/cole-robertson/hyprland-keyboard-ho
 
 **That's it!** In 30 seconds you'll have:
 - ✅ Your external keyboard detected
-- ✅ **REAL key detection** - press actual keys!
+- ✅ **Test your keys** before choosing
 - ✅ Automatic switching enabled
 
 How it works:
-1. **Press and hold** the key you want as Super
-2. **We detect it** with a countdown timer
-3. **Confirm which key** you pressed
-4. **Done!** - Actual key detection!
+1. **Test different keys** to see what they do
+2. **Press ENTER** when you've decided
+3. **Choose which key** should be SUPER
+4. **Done!** - Simple and reliable!
 
 **Note:** Connect your external keyboard before running!
 
@@ -55,23 +55,21 @@ Let's test your external keyboard!
 │Ctrl│Alt │Cmd │         Space          │Cmd │Alt │Menu│Ctl│
 └────┴────┴────┴────────────────────────┴────┴────┴────┴───┘
 
-NOW: Press and HOLD the key you want as SUPER...
-(The key for Super+Q, Super+Enter, etc)
+Test your keyboard:
+1. Press the key you want to use as SUPER
+2. See what happens with Super+Q, Super+Enter
+3. Then tell us which key you want
 
-Listening for keypress...
-Press the key NOW...
-Waiting... 3 2 1
+Go ahead and test your keys, then press ENTER when ready...
 
-✓ Key detected!
-
-Which key did you actually press?
+Which physical key do you want as your SUPER key?
 1) Left Alt (beside spacebar)
 2) Left Cmd/Super/Win (between Ctrl and Alt)
 3) Right Alt
 4) I want to choose from a menu instead
 ```
 
-**REAL key detection** - Actually press the key you want!
+**Interactive testing** - Try your keys before choosing!
 
 ## Use Case
 

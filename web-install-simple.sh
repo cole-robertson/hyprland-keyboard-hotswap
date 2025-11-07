@@ -85,17 +85,21 @@ main() {
     echo -e "${DIM}Downloading setup files...${NC}"
     mkdir -p scripts
 
-    echo -e "${DIM}  • Downloading simple-setup.sh...${NC}"
-    download "scripts/simple-setup.sh" "scripts/simple-setup.sh"
+    echo -e "${DIM}  • Downloading arrow-menu.sh...${NC}"
+    download "scripts/arrow-menu.sh" "scripts/arrow-menu.sh"
+
+    echo -e "${DIM}  • Downloading simple-setup-arrow.sh...${NC}"
+    download "scripts/simple-setup-arrow.sh" "scripts/simple-setup-arrow.sh"
 
     echo -e "${DIM}  • Downloading keyboard-switch-generic.sh...${NC}"
     download "scripts/keyboard-switch-generic.sh" "scripts/keyboard-switch-generic.sh"
 
     chmod +x scripts/*.sh
 
-    # Run the simple setup
+    # Run the simple setup with arrow navigation
     echo -e "${DIM}Starting setup wizard...${NC}"
-    if ! ./scripts/simple-setup.sh; then
+    sleep 1
+    if ! ./scripts/simple-setup-arrow.sh; then
         echo -e "${RED}Setup cancelled${NC}"
         exit 1
     fi

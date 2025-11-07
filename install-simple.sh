@@ -31,9 +31,10 @@ if [[ -f "$HYPR_CONFIG_DIR/input.conf" ]]; then
     cp "$HYPR_CONFIG_DIR/input.conf" "$BACKUP_FILE"
 fi
 
-# Run the simple setup
-chmod +x "$SCRIPT_DIR/scripts/simple-setup.sh"
-if ! "$SCRIPT_DIR/scripts/simple-setup.sh"; then
+# Run the simple setup with arrow navigation
+chmod +x "$SCRIPT_DIR/scripts/arrow-menu.sh"
+chmod +x "$SCRIPT_DIR/scripts/simple-setup-arrow.sh"
+if ! "$SCRIPT_DIR/scripts/simple-setup-arrow.sh"; then
     echo -e "${RED}Setup cancelled${NC}"
     exit 1
 fi

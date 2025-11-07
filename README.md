@@ -4,31 +4,65 @@ Automatically switch Hyprland keyboard configuration when external keyboards are
 
 ## Features
 
-- **Automatic Detection**: Detects when your external keyboard is connected/disconnected
-- **Instant Switching**: Configuration changes apply immediately without restart
+- **Interactive Setup**: Automatically detects YOUR keyboard and lets you choose key mappings
+- **Universal Support**: Works with ANY USB keyboard - not limited to specific models
+- **Custom Key Mapping**: Choose which physical key acts as Super, Alt, or Ctrl
+- **Automatic Detection**: Switches configuration when you plug/unplug
+- **Instant Switching**: Changes apply immediately without restart
 - **Persistent Settings**: Correct configuration loads on system startup
-- **Easy Installation**: One-command setup with automatic backup
+- **Easy Installation**: Interactive setup guides you through the process
 
 ## Use Case
 
-This tool was created for laptop users who:
-- Use `altwin:swap_lalt_lwin` to swap Alt/Super keys on their laptop keyboard
-- Want normal key behavior when using an external keyboard
-- Need automatic switching without manual configuration changes
+This tool is perfect for:
+- Laptop users switching between built-in and external keyboards
+- Mac users who want Cmd key to work as Super on Linux
+- Anyone who wants different key mappings for different keyboards
+- Users with multiple keyboards who want consistent behavior
 
-## Quick Start
+## Quick Start - Interactive Setup (NEW!)
+
+The new interactive installer will:
+1. Detect your external keyboard automatically
+2. Let you test and choose your preferred key mappings
+3. Configure different behaviors for laptop vs external keyboard
+4. Set up automatic switching
 
 ```bash
-# Clone and install
+# Clone and install interactively
 git clone https://github.com/cole-robertson/hyprland-keyboard-hotswap.git
 cd hyprland-keyboard-hotswap
+chmod +x install-interactive.sh
+./install-interactive.sh
+```
+
+### During Setup, You Can Choose:
+
+**For your external keyboard:**
+- Keep default (no changes)
+- Swap Alt ↔ Super (left side only)
+- Swap Alt ↔ Super (both sides)
+- Mac-style: Cmd acts as Super, Option as Alt
+- Custom mapping (advanced)
+
+**For your laptop keyboard:**
+- Swap Alt ↔ Super (Mac-like experience)
+- Keep default (no changes)
+- Same as external keyboard
+
+## Original Setup (Specific Keyboard)
+
+If you prefer the original non-interactive setup:
+
+```bash
+# Use original installer
 chmod +x install.sh
 ./install.sh
 ```
 
 ## What Gets Installed
 
-- **Configuration Files**: Two Hyprland input configs (laptop/external)
+- **Configuration Files**: Your custom keyboard settings and Hyprland configs
 - **Switch Scripts**: Automatic detection and switching logic
 - **Udev Rule**: Triggers on USB keyboard connect/disconnect events
 - **Autostart Entry**: Ensures correct config on system startup
@@ -39,13 +73,12 @@ After installation, files are placed in:
 ```
 ~/.config/hypr/
 ├── input.conf                 # Active configuration (auto-managed)
-├── input-laptop.conf         # Laptop keyboard config (keys swapped)
-├── input-external.conf       # External keyboard config (keys normal)
+├── keyboard-hotswap.conf     # Your keyboard settings and mappings
 ├── keyboard-switch.sh        # Main switching script
 └── keyboard-init.sh          # Startup initialization script
 
 /etc/udev/rules.d/
-└── 99-hypr-keyboard.rules   # USB detection rule
+└── 99-hypr-keyboard.rules   # USB detection rule (generated for your keyboard)
 ```
 
 ## Manual Commands
@@ -65,33 +98,41 @@ Test or force specific configurations:
 
 ## Customization
 
-### Different Keyboard
+### Reconfigure Your Keyboard
 
-Edit the udev rule to match your keyboard's vendor and product ID:
+To change your keyboard or key mappings, simply run the interactive installer again:
 
-1. Find your keyboard's ID:
+```bash
+./install-interactive.sh
+```
+
+It will:
+- Detect your current keyboard
+- Let you choose new mappings
+- Update all configurations automatically
+
+### Manual Configuration
+
+If you want to manually edit your settings:
+
+1. Edit your saved configuration:
    ```bash
-   lsusb
-   # Look for your keyboard, note the ID (e.g., 05ac:024f)
+   nano ~/.config/hypr/keyboard-hotswap.conf
    ```
 
-2. Update `/etc/udev/rules.d/99-hypr-keyboard.rules`:
+2. Modify the key mappings:
    ```bash
-   # Replace 05ac and 024f with your keyboard's vendor and product ID
-   ATTR{idVendor}=="YOUR_VENDOR", ATTR{idProduct}=="YOUR_PRODUCT"
+   # Example mappings you can use:
+   LAPTOP_KB_OPTIONS="altwin:swap_lalt_lwin"     # Swap left Alt ↔ Super
+   EXTERNAL_KB_OPTIONS="altwin:swap_alt_win"      # Swap all Alt ↔ Super
    ```
 
-3. Reload udev:
+3. Apply changes:
    ```bash
-   sudo udevadm control --reload-rules
-   sudo udevadm trigger
+   ~/.config/hypr/keyboard-switch.sh check
    ```
 
 ### Different Key Mappings
-
-Edit the configuration files in `~/.config/hypr/`:
-- `input-laptop.conf`: Configuration for laptop keyboard
-- `input-external.conf`: Configuration for external keyboard
 
 Common `kb_options`:
 - `altwin:swap_lalt_lwin` - Swap left Alt and Super
@@ -156,4 +197,4 @@ MIT License - Feel free to modify and distribute as needed.
 
 ## Author
 
-Created by Cole Robertson for personal use with Flow84@Lofree keyboard.
+Created by Cole Robertson - initially for Flow84@Lofree keyboard, now supports any USB keyboard with interactive configuration.

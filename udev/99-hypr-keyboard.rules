@@ -1,0 +1,8 @@
+# Udev rule for Hyprland keyboard configuration switching
+# Detects Flow84@Lofree keyboard connection/disconnection
+
+# When the Flow84@Lofree keyboard is connected
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="024f", RUN+="/home/cole/.config/hypr/keyboard-switch.sh add"
+
+# When the Flow84@Lofree keyboard is disconnected
+ACTION=="remove", SUBSYSTEM=="usb", ENV{ID_VENDOR_ID}=="05ac", ENV{ID_MODEL_ID}=="024f", RUN+="/home/cole/.config/hypr/keyboard-switch.sh remove"

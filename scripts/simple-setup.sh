@@ -96,18 +96,19 @@ get_key_choice() {
     local prompt="$1"
     local current="$2"
 
-    echo -e "${CYAN}$prompt${NC}"
-    echo -e "${DIM}Currently: $current${NC}\n"
+    # Display to screen (stderr so it's not captured)
+    echo -e "${CYAN}$prompt${NC}" >&2
+    echo -e "${DIM}Currently: $current${NC}\n" >&2
 
-    echo -e "Choose an option:"
-    echo -e "  ${BOLD}1${NC} → Keep as is"
-    echo -e "  ${BOLD}2${NC} → Swap Alt ↔ Super (left side)"
-    echo -e "  ${BOLD}3${NC} → Swap Alt ↔ Super (both sides)"
-    echo -e "  ${BOLD}4${NC} → Mac style (Cmd→Super, Option→Alt)"
-    echo ""
+    echo -e "Choose an option:" >&2
+    echo -e "  ${BOLD}1${NC} → Keep as is" >&2
+    echo -e "  ${BOLD}2${NC} → Swap Alt ↔ Super (left side)" >&2
+    echo -e "  ${BOLD}3${NC} → Swap Alt ↔ Super (both sides)" >&2
+    echo -e "  ${BOLD}4${NC} → Mac style (Cmd→Super, Option→Alt)" >&2
+    echo "" >&2
 
     read -p "$(echo -e ${CYAN}Your choice [1-4]: ${NC})" -n 1 choice < /dev/tty
-    echo ""
+    echo "" >&2
 
     case $choice in
         1) return 1 ;;

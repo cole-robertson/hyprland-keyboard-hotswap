@@ -85,18 +85,21 @@ main() {
     echo -e "${DIM}Downloading setup files...${NC}"
     mkdir -p scripts
 
-    echo -e "${DIM}  • Downloading real key detection setup...${NC}"
-    download "scripts/realkey-setup.sh" "scripts/realkey-setup.sh"
+    echo -e "${DIM}  • Downloading key listener...${NC}"
+    download "scripts/listen-key.sh" "scripts/listen-key.sh"
+
+    echo -e "${DIM}  • Downloading setup with detection...${NC}"
+    download "scripts/setup-with-detection.sh" "scripts/setup-with-detection.sh"
 
     echo -e "${DIM}  • Downloading keyboard switcher...${NC}"
     download "scripts/keyboard-switch-generic.sh" "scripts/keyboard-switch-generic.sh"
 
     chmod +x scripts/*.sh
 
-    # Run the real key detection setup
-    echo -e "${DIM}Starting key detection setup...${NC}"
+    # Run the setup with real key detection
+    echo -e "${DIM}Starting setup with key detection...${NC}"
     sleep 1
-    if ! ./scripts/realkey-setup.sh; then
+    if ! ./scripts/setup-with-detection.sh; then
         echo -e "${RED}Setup cancelled${NC}"
         exit 1
     fi

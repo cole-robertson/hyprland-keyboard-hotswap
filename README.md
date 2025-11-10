@@ -35,9 +35,9 @@ How it works:
 ```
 ╔══════════════════════════════════════════════════════╗
 ║                                                      ║
-║        ⌨️  REAL KEY DETECTION SETUP                  ║
+║      ⌨️  KEYBOARD SETUP WITH KEY DETECTION          ║
 ║                                                      ║
-║    Actually press the keys you want to use!         ║
+║         Actually detects your keypresses!           ║
 ║                                                      ║
 ╚══════════════════════════════════════════════════════╝
 
